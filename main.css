@@ -59,6 +59,7 @@ main{
 }
 
 .input-field,
+.new-range-btn,
 .reset-btn {
   width: 100%;
 }
@@ -69,6 +70,7 @@ main{
 }
 
 .submit-btns,
+.new-range-btn,
 .reset-btn {
   background-color: #929497;
   color: #ffffff;
@@ -78,6 +80,7 @@ main{
 
 .input-field,
 .submit-btns,
+.new-range-btn,
 .reset-btn{
   font-size: 20px;
   font-weight: 300;
@@ -124,11 +127,24 @@ main{
     margin: 0;
   }
 
+  .new-min-max-fields {
+    width: 49%;
+    margin: 0;
+  }
+
+  .new-min-max-fields::-webkit-input-placeholder{
+    font-size: 50%;
+  }
+
 }
 
 @media only screen and (min-width: 600px){
   main {
     width: 53%;
+  }
+
+  .new-min-max-fields::-webkit-input-placeholder{
+    font-size: 70%;
   }
 }
 
