@@ -1,0 +1,35 @@
+<!doctype html>
+<head>
+  <title>NumberGuesser Mod1-2</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="main.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet">
+</head>
+<body>
+  <section id="container">
+    <header>
+      <h1>Number<span class="h1-span">Guesser</span>
+      </h1>
+    </header>
+    <main>
+        <section class="enter-guess-section btn-width">
+          <input type="number" class="input-field btn-height" placeholder="Enter your guess" />
+        </section>
+        <section class="guess-btns-section btn-width">
+          <button type="submit" class="submit-btns guess-btn buttons btn-height btn-hover" disabled="true">Guess</button>
+          <button type="submit" class="submit-btns clear-btn buttons btn-height btn-hover" disabled="true">Clear</button>
+        </section>
+        <section class="display-guess-section btn-width">
+          <p class="content top-message"></p>
+          <p class="content num-guess"></p>
+          <p class="content bottom-message"></p>
+        </section>
+        <section class="reset-btn-section btn-width">
+          <button type="submit" class="reset-btn buttons btn-height btn-hover" disabled="true">Reset</button>
+        </section>
+    </main><!--End main-->
+  </section><!--End container-->
+  <script src="numbGuess.js"></script>
+</body>
+</html>
