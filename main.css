@@ -59,7 +59,7 @@ main{
 }
 
 .input-field,
-.new-range-btn,
+.submit-new-range-btn,
 .reset-btn {
   width: 100%;
 }
@@ -70,7 +70,7 @@ main{
 }
 
 .submit-btns,
-.new-range-btn,
+.submit-new-range-btn,
 .reset-btn {
   background-color: #929497;
   color: #ffffff;
@@ -80,7 +80,7 @@ main{
 
 .input-field,
 .submit-btns,
-.new-range-btn,
+.submit-new-range-btn,
 .reset-btn{
   font-size: 20px;
   font-weight: 300;

@@ -21,7 +21,6 @@ initialInput.addEventListener('focus', function(e) {
     e.preventDefault();
     guessBtn.disabled = false;
     clearBtn.disabled = false;
-    newRangeBtn.disabled = false;
     resetBtn.disabled = false;
 });
 
@@ -37,9 +36,11 @@ clearBtn.addEventListener('click', function(e) {
     clearField();
 });
 
-newMinMaxInput.addEventListener('click', function(e) {
+newMinMaxInput.addEventListener('focus', function(e) {
     e.preventDefault();
-    newRangeBtn.disabled = false;
+    guessBtn.disabled = false;
+    clearBtn.disabled = false;
+    submitNewRangeBtn.disabled = false;
     resetBtn.disabled = false;
 });
 
@@ -82,7 +83,6 @@ function randNumCalc(inputValue, randNum, min, max) {
 function userGuess(inputValue, randNum) {
     min = 0;
     max = 100;
-
     topMessages(inputValue);
     randNumCalc(inputValue, randNum, min, max)
 }
