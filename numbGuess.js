@@ -5,9 +5,10 @@ var clearBtn = document.querySelector('.clear-btn');
 var topMessage = document.querySelector('.top-message');
 var numGuess = document.querySelector('.num-guess');
 var bottomMessage = document.querySelector('.bottom-message');
+var newMinMaxInput = document.querySelector('.new-min-max-fields');
 var newMinValue = document.querySelector('.new-min-val');
 var newMaxValue = document.querySelector('.new-max-val');
-var newRangeBtn = document.querySelector('.new-range-btn');
+var submitNewRangeBtn = document.querySelector('.submit-new-range-btn');
 var resetBtn = document.querySelector('.reset-btn');
 var displayGuess = document.querySelector('.display-guess-section');
 var randNum = Math.floor(Math.random() * 100 + 1);
@@ -20,7 +21,6 @@ initialInput.addEventListener('focus', function(e) {
     e.preventDefault();
     guessBtn.disabled = false;
     clearBtn.disabled = false;
-    newRangeBtn.disabled = false;
     resetBtn.disabled = false;
 });
 
@@ -36,7 +36,15 @@ clearBtn.addEventListener('click', function(e) {
     clearField();
 });
 
-newRangeBtn.addEventListener('click', function(e) {
+newMinMaxInput.addEventListener('focus', function(e) {
+    e.preventDefault();
+    guessBtn.disabled = false;
+    clearBtn.disabled = false;
+    submitNewRangeBtn.disabled = false;
+    resetBtn.disabled = false;
+});
+
+submitNewRangeBtn.addEventListener('click', function(e) {
     e.preventDefault();
     var newMin = parseInt(newMinValue.value);
     var newMax = parseInt(newMaxValue.value);
@@ -60,26 +68,26 @@ function topMessages(inputValue) {
     numGuess.textContent = inputValue;
 }
 
-function userGuess(inputValue, randNum) {
-    min = 0;
-    max = 100;
-
-    topMessages(inputValue);
-
+function randNumCalc(inputValue, randNum, min, max) {
     if (inputValue > randNum) {
         bottomMessage.textContent = "That was too high";
     } else if (inputValue < randNum) {
         bottomMessage.textContent = "That was too low!";
     } else if (inputValue < min || inputValue > max) {
         bottomMessage.textContent = "Please enter a number between 1 and 100";
-    } else {
+    } else if (inputValue === randNum) {
         bottomMessage.textContent = "Boom!";
     }
 }
 
-function adjustMinMaxRange(newMin, newMax) {
-    min = newMin;
-    max = newMax;
+function userGuess(inputValue, randNum) {
+    min = 0;
+    max = 100;
+    topMessages(inputValue);
+    randNumCalc(inputValue, randNum, min, max)
+}
 
-    if (initialInput)
+
+function adjustMinMaxRange(newMin, newMax) {
+    randNumCalc(newMin, newMax)
 }
