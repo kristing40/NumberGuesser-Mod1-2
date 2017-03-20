@@ -2,7 +2,6 @@
 var initialInput = document.querySelector('.input-field');
 var guessBtn = document.querySelector('.guess-btn')
 var clearBtn = document.querySelector('.clear-btn');
-var topMessage = document.querySelector('.top-message');
 var numGuess = document.querySelector('.num-guess');
 var bottomMessage = document.querySelector('.bottom-message');
 var newMinMaxInput = document.querySelector('.new-min-max-fields');
@@ -14,6 +13,7 @@ var displayGuess = document.querySelector('.display-guess-section');
 var randNum = Math.floor(Math.random() * 100 + 1);
 var min;
 var max;
+
 
 
 /***EVENT LISTENERS***/
@@ -64,29 +64,31 @@ function clearField() {
 }
 
 function topMessages(inputValue) {
+    var topMessage = document.querySelector('.top-message');
     topMessage.textContent = "Your last guess was";
     numGuess.textContent = inputValue;
 }
 
-function randNumCalc(inputValue, randNum, min, max) {
-    if (inputValue > randNum) {
-        bottomMessage.textContent = "That was too high";
+function randNumCalc(inputValue, randNum) {
+    min = 0;
+    max = 100;
+
+    if (inputValue < min || inputValue > max) {
+        bottomMessage.textContent = "Enter a number between 1 and 100";
     } else if (inputValue < randNum) {
         bottomMessage.textContent = "That was too low!";
-    } else if (inputValue < min || inputValue > max) {
-        bottomMessage.textContent = "Please enter a number between 1 and 100";
+    } else if (inputValue > randNum) {
+        bottomMessage.textContent = "That was too high";
     } else if (inputValue === randNum) {
         bottomMessage.textContent = "Boom!";
     }
 }
 
 function userGuess(inputValue, randNum) {
-    min = 0;
-    max = 100;
     topMessages(inputValue);
-    randNumCalc(inputValue, randNum, min, max)
-}
+    randNumCalc(inputValue, randNum)
 
+}
 
 function adjustMinMaxRange(newMin, newMax) {
     randNumCalc(newMin, newMax)
