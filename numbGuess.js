@@ -2,19 +2,17 @@
 var initialInput = document.querySelector('.input-field');
 var guessBtn = document.querySelector('.guess-btn')
 var clearBtn = document.querySelector('.clear-btn');
-var numGuess = document.querySelector('.num-guess');
-var bottomMessage = document.querySelector('.bottom-message');
+
 var newMinMaxInput = document.querySelector('.new-min-max-fields');
-var newMinValue = document.querySelector('.new-min-val');
-var newMaxValue = document.querySelector('.new-max-val');
 var submitNewRangeBtn = document.querySelector('.submit-new-range-btn');
 var resetBtn = document.querySelector('.reset-btn');
+var bottomMessage = document.querySelector('.bottom-message');
+var newMinValue = document.querySelector('.new-min-val');
+var newMaxValue = document.querySelector('.new-max-val');
 var displayGuess = document.querySelector('.display-guess-section');
-var randNum = Math.floor(Math.random() * 100 + 1);
-var min;
-var max;
-
-
+var min = min || 0;
+var max = max || 100;
+var randNum;
 
 /***EVENT LISTENERS***/
 initialInput.addEventListener('focus', function(e) {
@@ -46,9 +44,10 @@ newMinMaxInput.addEventListener('focus', function(e) {
 
 submitNewRangeBtn.addEventListener('click', function(e) {
     e.preventDefault();
-    var newMin = parseInt(newMinValue.value);
-    var newMax = parseInt(newMaxValue.value);
-    adjustMinMaxRange(newMin, newMax);
+    min = parseInt(newMinValue.value);
+    max = parseInt(newMaxValue.value);
+    randNumCalc();
+    outPutDisplay(min, max);
 
 });
 
@@ -63,33 +62,37 @@ function clearField() {
     initialInput.value = "";
 }
 
+function randNumCalc() {
+    randNum = Math.floor(Math.random() * (max - min) + min);
+    console.log(max, min, randNum);
+}
+randNumCalc();
+
 function topMessages(inputValue) {
     var topMessage = document.querySelector('.top-message');
     topMessage.textContent = "Your last guess was";
+    var numGuess = document.querySelector('.num-guess');
     numGuess.textContent = inputValue;
 }
 
-function randNumCalc(inputValue, randNum) {
-    min = 0;
-    max = 100;
-
-    if (inputValue < min || inputValue > max) {
-        bottomMessage.textContent = "Enter a number between 1 and 100";
+function outPutDisplay(inputValue, randNum) {
+    if (isNaN(inputValue)) {
+        bottomMessage.textContent = "Please enter a number"
+    } else if (inputValue < min || inputValue > max) {
+        bottomMessage.textContent = "Enter a number between "  + min + " and " + max;
     } else if (inputValue < randNum) {
         bottomMessage.textContent = "That was too low!";
     } else if (inputValue > randNum) {
         bottomMessage.textContent = "That was too high";
     } else if (inputValue === randNum) {
+        max = max + 10;
+        min = min -10;
+        randNumCalc();
         bottomMessage.textContent = "Boom!";
     }
 }
 
 function userGuess(inputValue, randNum) {
     topMessages(inputValue);
-    randNumCalc(inputValue, randNum)
-
-}
-
-function adjustMinMaxRange(newMin, newMax) {
-    randNumCalc(newMin, newMax)
+    outPutDisplay(inputValue, randNum)
 }
