@@ -5,7 +5,7 @@ var clearBtn = document.querySelector('.clear-btn');
 var newMinMaxInput = document.querySelector('.new-min-max-fields');
 var submitNewRangeBtn = document.querySelector('.submit-new-range-btn');
 var resetBtn = document.querySelector('.reset-btn');
-var bottomMessage = document.querySelector('.bottom-message');
+
 var newMinValue = document.querySelector('.new-min-val');
 var newMaxValue = document.querySelector('.new-max-val');
 var min = min || 0;
@@ -44,7 +44,6 @@ submitNewRangeBtn.addEventListener('click', function(e) {
     min = parseInt(newMinValue.value);
     max = parseInt(newMaxValue.value);
     randNumCalc();
-    outPutDisplay(min, max);
 });
 
 resetBtn.addEventListener('click', function(e) {
@@ -60,7 +59,7 @@ function clearField() {
 
 function randNumCalc() {
     randNum = Math.floor(Math.random() * (max - min) + min);
-    console.log(max, min, randNum);
+    console.log(min,max,randNum)
 }
 randNumCalc();
 
@@ -72,6 +71,7 @@ function topMessages(inputValue) {
 }
 
 function outPutDisplay(inputValue, randNum) {
+  var bottomMessage = document.querySelector('.bottom-message');
     if (isNaN(inputValue)) {
         bottomMessage.textContent = "Please enter a number"
     } else if (inputValue < min || inputValue > max) {
@@ -83,7 +83,6 @@ function outPutDisplay(inputValue, randNum) {
     } else if (inputValue === randNum) {
         max = max + 10;
         min = min -10;
-        randNumCalc();
         bottomMessage.textContent = "Boom!";
     }
 }
